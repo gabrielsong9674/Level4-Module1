@@ -13,7 +13,7 @@ public class ArrayList <T>{
 	}
 	
 	public void add(T val) {
-		
+	
 	}
 	
 	public void insert(int loc, T val) throws IndexOutOfBoundsException {
