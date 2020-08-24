@@ -50,9 +50,8 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 
 				g2.setColor(BACKGROUND_COLOR);
 				g2.fillRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
-
 				g2.setColor(FOOD_COLOR);
-				g2.drawOval(foodLocation.x * WINDOW_SCALE, foodLocation.y * WINDOW_SCALE, Snake.BODY_SIZE,
+				g2.drawOval(foodLocation.x, foodLocation.y, Snake.BODY_SIZE,
 						Snake.BODY_SIZE);
 				snake.draw(g);
 			}
@@ -124,7 +123,6 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP:
 			snake.setDirection(Direction.UP);
-			
 			break;
 		case KeyEvent.VK_DOWN:
 			snake.setDirection(Direction.DOWN);
@@ -150,6 +148,7 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		//   use the snake's isLocationOnSnake method to make sure you don't put the food on the snake
 		if(!snake.isLocationOnSnake(location)) {
 			foodLocation = location;
+			
 		}
 		else {
 			setFoodLocation();
@@ -170,11 +169,12 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		if(choice.equalsIgnoreCase("yes")) {
 			snake.reset(new Location(WIDTH / 2, HEIGHT / 2));
 			//RESET FOOD
-			
+			setFoodLocation();
 			timer.start();
 		}
 		else {
 			//CLOSE
+			
 		}
 		
 	}
@@ -190,12 +190,15 @@ public class _00_SnakeGame implements ActionListener, KeyListener {
 		snake.update();
 		//2. if the snake is colliding with its own body 
 		//   or if the snake is out of bounds, call gameOver
-		
+		if(snake.isHeadCollidingWithBody() || snake.isOutOfBounds()) {
+			gameOver();
+		}
 		//3. if the location of the head is equal to the location of the food,
 		// 	 feed the snake and set the food location
-		if(snake.getHeadLocation() == foodLocation) {
+		if(snake.getHeadLocation().x ==(foodLocation.x/WINDOW_SCALE) && snake.getHeadLocation().y ==(foodLocation.y/WINDOW_SCALE)) {
 			snake.feed();
 			setFoodLocation();
+			System.out.println("feed");
 		}
 		//4. call panel.repaint();
 		panel.repaint();
