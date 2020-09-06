@@ -68,7 +68,7 @@ public class CustomArrayListTest {
 		list.add(new Student("Devaugn"));
 		
 		list.remove(0);
-		
+
 		if(!list.get(0).name.equals("Sara")) {
 			fail("list.get(0) returning improper value.");
 		}
@@ -80,6 +80,7 @@ public class CustomArrayListTest {
 		}
 		
 		list.remove(2);
+
 		if(!list.get(0).name.equals("Sara")) {
 			fail("list.get(0) returning improper value.");
 		}
@@ -104,8 +105,8 @@ public class CustomArrayListTest {
 		assertFalse(list.contains("best"));
 	}
 	
-	//@Test
-	/*public void testSize() {
+	@Test
+	public void testSize() {
 		ArrayList<String> list = new ArrayList<String>();
 		list.add("This");
 		list.add("is");
@@ -138,5 +139,5 @@ public class CustomArrayListTest {
 		list.remove(0);
 		
 		assertTrue(list.size() == 3);
-	}*/
+	}
 }

@@ -56,17 +56,23 @@ public class ArrayList <T>{
 		t = set;
 		
 	}
-	//0 1 2 3 4 
+	
 	public void remove(int loc) throws IndexOutOfBoundsException {
-		T[] remove = (T[]) new Object[t.length - 1];
+		T[] remove = (T[]) new Object[t.length-1];
 		for(int i = 0; i < loc; i ++) {
 			remove[i] = t[i];
 		}
+		for(int i = loc; i < t.length - 1; i ++) {
+			remove[i] = t[i + 1];
+		}
+	
 		t = remove;
+		
+		
 	}
 	
 	public boolean contains(T val) {
-		for(int i = 0; i < t.length; i ++) {
+		for(int i = 0; i < t.length ; i ++) {
 			if(t[i] == val) {
 				return true;
 			}
